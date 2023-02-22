@@ -1,0 +1,305 @@
+$width_main_big : 900px;
+$width_main_medium : 600px;
+$width_main_small : 350;
+
+
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;700&display=swap');
+
+
+@mixin grid_center{
+    display: grid;
+    justify-content: center;
+    align-content: center;
+}
+
+
+body{
+    display: grid;
+    justify-items: center;
+    justify-content: center;
+    font-family: 'Oswald', sans-serif;
+    background-color: #37055905;
+}
+
+a{
+    text-decoration: none;
+    color:black;
+}
+
+
+.red{
+    color: red;
+}
+
+.green{
+    color:green;    
+}
+
+.lower{
+    align-self:end;
+}
+
+
+#root{
+    width: $width_main_big;
+}
+
+header{
+    background-color: #d2d8fa;
+
+    padding:2rem;
+    margin-bottom: 1rem;
+
+    max-width: $width_main_big;
+
+    a{
+        display:inline-flex;
+        gap:1rem;
+    }
+}
+
+
+nav{
+    font-family: Arial, sans-serif;
+    background-color: #6713b6;
+    display:flex;
+    margin-bottom: 1rem;
+    
+    a{
+        padding:0.5rem;
+        color:white;
+        &:hover{
+            background-color: #8729df
+        }
+    }
+}
+
+.gallery_box{
+
+    @include grid_center;
+   
+}
+
+.wrap_gallery
+{   
+    display: grid;
+    grid-template-columns: auto auto auto;
+    gap: 10px;
+}
+
+
+
+.prod_card
+{
+    text-decoration: none;
+    max-width: 300px;
+    border: 1px solid black;
+    padding: 10px;
+    display: grid;
+    justify-content: center;
+
+    article{
+        display:grid;
+        align-content: center;
+    }
+
+    &:hover{
+        background-color: rgba(38, 39, 98, 0.22);;
+    }
+}
+
+.price{
+    color:green;
+    background-color: white;
+    font-size: 1.3rem;
+    justify-self: center;
+    border: 1px solid lightgray;
+    padding: 7px;
+  
+}
+
+.thumb_prod{
+    width: 250px;
+    max-height: 375px;
+    object-fit: cover;
+    border: 2px solid rgba(211, 211, 211, 0.541);
+
+    
+}
+
+
+.gallery_pages{
+
+    font-family: Arial, sans-serif;
+
+    display: inline-flex;
+    justify-self: center;
+    gap: 0.5rem;
+
+
+    margin: 2rem;
+
+    
+
+    .active_page{
+        font-size: 1.5rem;
+        font-weight: 700;
+    }
+
+    div{
+        display:grid;
+        align-items: end;
+        
+    }
+}
+
+article{
+    picture{
+        @include grid_center();
+    }
+}
+
+footer{
+    height:5rem;
+    padding: 4rem 1rem 1rem 1rem;
+    background-color: lightgray;
+    margin-top: 1rem;
+
+    a{
+        text-decoration: underline;
+    }
+}
+
+
+.single_product{
+    display:grid;
+    //grid-template-columns: auto;
+    grid-template-areas: 'pic description'
+                          'pic thumb';
+    gap:10px;
+
+        
+}
+
+.back_button{
+    background-color: #a767e1;;
+    font-size: 1.2rem;
+    padding:5px;
+    border: none;
+    cursor:pointer;
+
+    &:hover{
+        background-color: #a667e179;
+    }
+}
+
+
+
+.wrap_main_pic{
+
+    grid-area: pic;
+    
+    width: 300px;
+    height: 500px;
+    border: 1px solid black;
+
+    @include grid_center();
+
+    img{
+        max-width: 250px;
+        max-height: 375px;
+        object-fit: cover;
+    }
+}
+
+
+
+.pic_mini{
+    max-width: 100px;
+    max-height:100px;
+    object-fit: cover;
+
+}
+
+.prod_description{
+    grid-area: description;
+}
+
+
+.box_mini_pic{
+    grid-area: thumb;
+
+    display: inline-flex;
+    gap: 10px;
+    width: 550px;
+    height: 115px;
+
+    align-self: end;
+    overflow: scroll;
+    padding: 10px;
+    background-color: #d2e0fa66;
+       .wrap_pic_mini{
+            width: 100px;
+            height: 100px;
+            border: 1px solid black;
+            background-color: white;
+
+            @include grid_center();
+        }
+}   
+
+
+.about_wrap{
+    min-height: 400px;
+    padding-top:2rem;
+    font-family: Arial, sans-serif;
+}
+
+
+@media only screen and (max-width: $width_main_big) {
+
+    #root{
+        width: $width_main_medium;
+    }
+
+    header{
+  
+        max-width: $width_main_medium;
+    }
+    .wrap_gallery
+    {   
+        grid-template-columns: auto auto;
+    }
+    .box_mini_pic{
+        width: 260px;
+    }
+
+
+}
+
+
+@media only screen and (max-width: $width_main_medium) {
+
+    #root{
+        width: 98vw;
+    }
+    .wrap_gallery
+    {   
+        grid-template-columns: auto ;
+    }
+
+    header{
+  
+        max-width: 90vw;    
+    }
+
+
+    .single_product{
+
+        grid-template-areas: 'description'
+                              'pic '
+                              'thumb';
+        justify-items: center;
+    }
+
+}
