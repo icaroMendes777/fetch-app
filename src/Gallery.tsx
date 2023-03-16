@@ -2,6 +2,13 @@ import React from 'react';
 import { Link } from "react-router-dom";
 import { useParams } from "react-router-dom";
 
+///main page /gallery
+///renders a list of nine products at time,
+///pagination is rendered at the bottom of the page
+///does a rest request to a dummy data website
+///each product leads to a inner page rendered in a different component
+
+
 export default function Gallery()
 {
 
@@ -22,17 +29,18 @@ export default function Gallery()
    
     let currentPage = parseInt(page);
   
-  ///-------================== Fetch data here
+  ///-------================== Fetch data here!
     React.useEffect(
       () => {
         
         let skip:number=0;
 
+          ///----
         if(page){
                 
                 skip = currentPage * numberProductsByPage;
         }
-       
+       ////makes the GET params based on the desired page
         let url = urlListProducts+'?limit='+numberProductsByPage+'&skip='+skip;
         
         fetch(url).then((response) => response.json())
@@ -62,7 +70,7 @@ export default function Gallery()
          
      }
 
-        /////------data still not fetched
+        /////------in case data still not fetched it gives a loading message
     if(loading) return <h3>Loading...</h3>;
 
     return (
@@ -94,6 +102,10 @@ export default function Gallery()
     );
 }
 
+
+///renders the links to the many pages of products
+///only a few page links are visible at time
+///this is for not gettin a too big list of pages
 
 function PagesLink(props)
 {
